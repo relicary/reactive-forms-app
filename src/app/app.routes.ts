@@ -10,7 +10,7 @@ export const routes: Routes = [
     loadChildren: () => import('./auth/auth.routes'),
   },
   {
-    path: 'countries',
+    path: 'country',
     loadChildren: () => import('./country/country.routes').then( (modules) => modules.countryRoutes),
   },
   {
