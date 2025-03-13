@@ -29,7 +29,11 @@
           (keydown.enter)="onAddToFavourites()"
         />
 
-        <button class="btn btn-outline-primary" type="button">
+        <button
+          class="btn btn-outline-primary"
+          type="button"
+          (click)="onAddToFavourites()"
+        >
           Add favourite
         </button>
       </div>
@@ -84,5 +88,5 @@
 <br />
 
 <span>Add game</span>
-<pre>{{ "object" | json }}</pre>
-<pre>{{ "object" | json }}</pre>
+<pre>{{ myForm.controls["favouriteGames"].errors | json }}</pre>
+<pre>{{ myForm.controls["favouriteGames"].value | json }}</pre>
