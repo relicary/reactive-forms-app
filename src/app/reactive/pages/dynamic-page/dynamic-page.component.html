@@ -27,6 +27,7 @@
           placeholder="Add favorite"
           [formControl]="newFavourite"
           (keydown.enter)="onAddToFavourites()"
+          (keydown.enter)="$event.preventDefault()"
         />
 
         <button
