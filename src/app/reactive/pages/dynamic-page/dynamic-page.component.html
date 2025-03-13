@@ -10,7 +10,11 @@
         placeholder="User name"
         formControlName="name"
       />
-      <span class="form-text text-danger"> error message </span>
+      @if (formUtils.isValidField(myForm, 'name')) {
+      <span class="form-text text-danger">
+        {{ formUtils.getFieldError(myForm, "name") }}
+      </span>
+      }
     </div>
   </div>
 
@@ -39,7 +43,11 @@
 
           <button class="btn btn-outline-danger" type="button">Delete</button>
         </div>
-        <span class="form-text text-danger"> This field is required </span>
+        @if ( formUtils.isValidFieldInArray(favouriteGames, i)) {
+        <span class="form-text text-danger">
+          {{ formUtils.getFieldErrorInArray(favouriteGames, i) }}
+        </span>
+        }
       </div>
       }
     </div>

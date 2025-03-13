@@ -1,5 +1,6 @@
 import { JsonPipe } from '@angular/common';
 import { Component, inject } from '@angular/core';
+import { FormUtils } from '../../../utils/form-utils';
 import {
   FormArray,
   FormBuilder,
@@ -15,6 +16,8 @@ import {
 })
 export class DynamicPageComponent {
   private fb = inject(FormBuilder);
+
+  formUtils = FormUtils;
 
   myForm: FormGroup = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(3)]],
