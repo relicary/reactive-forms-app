@@ -84,6 +84,18 @@
         <span>Touched</span>
         <pre>{{ myForm.touched| json }}</pre>
 
+        <span>Form Errors</span>
+        <pre>{{ myForm.errors | json }}</pre>
+
+        <span>Product Field Errors</span>
+        <pre>{{ myForm.controls.name.errors | json }}</pre>
+
+        <span>Price Field Errors</span>
+        <pre>{{ myForm.controls.price.errors | json }}</pre>
+
+        <span>Stocks Field Errors</span>
+        <pre>{{ myForm.controls.inStorage.errors | json }}</pre>
+
         <span>Value</span>
         <pre>{{ myForm.value | json }}</pre>
 
