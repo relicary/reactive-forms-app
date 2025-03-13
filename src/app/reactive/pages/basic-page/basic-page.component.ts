@@ -42,7 +42,7 @@ export class BasicPageComponent {
         case 'minlength':
           return `This fields requires ${errors['minlength'].requiredLength} chars at least`;
         case 'min':
-          return `The minimum value is ${errors['min']}.min `;
+          return `The minimum value is ${errors['min'].min} `;
       }
     }
 

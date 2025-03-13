@@ -17,9 +17,9 @@
 
           @if ( isValidField('name') ) {
           <span class="form-text text-danger">
-            {{ getFieldError('name') }}
+            {{ getFieldError("name") }}
           </span>
-        }
+          }
         </div>
       </div>
 
@@ -33,9 +33,11 @@
             placeholder="Product's price"
             formControlName="price"
           />
+          @if ( isValidField('price') ) {
           <span class="form-text text-danger">
-            The price must be 0 or higher
+            {{ getFieldError("price") }}
           </span>
+          }
         </div>
       </div>
 
@@ -50,9 +52,11 @@
             formControlName="inStorage"
           />
 
+          @if ( isValidField('inStorage') ) {
           <span class="form-text text-danger">
-            Stocks should be 0 or greater
+            {{ getFieldError("inStorage") }}
           </span>
+          }
         </div>
       </div>
 
@@ -80,21 +84,21 @@
     <pre>{{ myForm.errors | json }}</pre>
 
     <span>Product Field Errors</span>
-    <pre>{{ myForm.controls['name'].errors | json }}</pre>
+    <pre>{{ myForm.controls["name"].errors | json }}</pre>
 
     <span>Price Field Errors</span>
-    <pre>{{ myForm.controls['price'].errors | json }}</pre>
+    <pre>{{ myForm.controls["price"].errors | json }}</pre>
 
     <span>Stocks Field Errors</span>
-    <pre>{{ myForm.controls['inStorage'].errors | json }}</pre>
+    <pre>{{ myForm.controls["inStorage"].errors | json }}</pre>
 
     <span>Value</span>
     <pre>{{ myForm.value | json }}</pre>
 
     <span>Precio</span>
-    <pre>{{ myForm.controls['price'].value | json }}</pre>
+    <pre>{{ myForm.controls["price"].value | json }}</pre>
 
     <span>Producto</span>
-    <pre>{{ myForm.controls['name'].value | json }}</pre>
+    <pre>{{ myForm.controls["name"].value | json }}</pre>
   </div>
 </div>
