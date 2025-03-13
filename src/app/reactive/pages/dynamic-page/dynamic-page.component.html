@@ -1,7 +1,7 @@
 <h2>Reactives: <small> Dynamics </small></h2>
 <hr />
 
-<form autocomplete="off" [formGroup]="myForm">
+<form autocomplete="off" [formGroup]="myForm" (ngSubmit)="onSubmit()">
   <div class="mb-3 row">
     <label class="col-sm-3 col-form-label">Name</label>
     <div class="col-sm-9">
@@ -60,19 +60,17 @@
         </span>
         }
       </div>
+      } @if ( formUtils.isValidField(myForm, 'favouriteGames')) {
+      <span class="form-text text-danger">
+        {{ formUtils.getFieldError(myForm, "favouriteGames") }}
+      </span>
       }
     </div>
   </div>
 
   <div class="row">
     <div class="col-sm-12">
-      <button
-        type="submit"
-        class="btn btn-primary float-end"
-        [disabled]="!myForm.valid"
-      >
-        Save
-      </button>
+      <button type="submit" class="btn btn-primary float-end">Save</button>
     </div>
   </div>
 </form>

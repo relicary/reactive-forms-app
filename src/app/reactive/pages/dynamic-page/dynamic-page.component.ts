@@ -50,4 +50,8 @@ export class DynamicPageComponent {
   onDeleteFavourite(index: number) {
     this.favouriteGames.removeAt(index);
   }
+
+  onSubmit() {
+    this.myForm.markAllAsTouched();
+  }
 }
