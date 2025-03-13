@@ -4,6 +4,7 @@ import { FormUtils } from '../../../utils/form-utils';
 import {
   FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
@@ -30,7 +31,23 @@ export class DynamicPageComponent {
     ),
   });
 
+  newFavourite = new FormControl('', Validators.required);
+
   get favouriteGames() {
     return this.myForm.get('favouriteGames') as FormArray;
+  }
+
+  onAddToFavourites() {
+    if (this.newFavourite.invalid) return;
+
+    const newGame = this.newFavourite.value;
+
+    this.favouriteGames.push(this.fb.control(newGame, Validators.required));
+
+    this.newFavourite.reset();
+  }
+
+  onDeleteFavourite(index: number) {
+    this.favouriteGames.removeAt(index);
   }
 }
