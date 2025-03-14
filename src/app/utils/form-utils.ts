@@ -1,7 +1,13 @@
 import { FormArray, FormGroup, ValidationErrors } from '@angular/forms';
 
 export class FormUtils {
+  static namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
+  static emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$';
+  static notOnlySpacesPattern = '^[a-zA-Z0-9]+$';
+
   static getTextError(errors: ValidationErrors) {
+    console.log('Errors: ', errors);
+
     for (const key of Object.keys(errors)) {
       switch (key) {
         case 'required':
@@ -12,6 +18,21 @@ export class FormUtils {
           return `The minimum value is ${errors['min'].min} `;
         case 'email':
           return 'The value is not a valid email';
+        case 'pattern':
+          if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
+            return 'The email address is not allowed';
+          }
+          if (errors['pattern'].requiredPattern === FormUtils.namePattern) {
+            return 'Add your Firstname and Surname splitted by a space';
+          }
+          if (
+            errors['pattern'].requiredPattern === FormUtils.notOnlySpacesPattern
+          ) {
+            return 'Not spaces allowed';
+          }
+          return 'Not managed pattern error';
+        default:
+          return 'Not controlled error';
       }
     }
 
