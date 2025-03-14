@@ -96,7 +96,10 @@
 
       <div class="row">
         <div class="col">
-          <button class="btn btn-primary float-end" type="submit">Crear</button>
+          @if (myForm.errors && myForm.touched) {
+          <span class="text-danger"> Passwords must be equal </span>
+          }
+          <button class="btn btn-primary float-end" type="submit">Add</button>
         </div>
       </div>
     </form>
