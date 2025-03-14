@@ -10,6 +10,8 @@ export class FormUtils {
           return `This fields requires ${errors['minlength'].requiredLength} chars at least`;
         case 'min':
           return `The minimum value is ${errors['min'].min} `;
+        case 'email':
+          return 'The value is not a valid email';
       }
     }
 
