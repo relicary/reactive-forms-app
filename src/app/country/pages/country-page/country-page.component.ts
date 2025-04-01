@@ -25,9 +25,13 @@ export class CountryPageComponent {
     border: ['', Validators.required],
   });
 
-  onFormChanged = effect(() => {
+  onFormChanged = effect((onCleanup) => {
     const formRegionChange = this.myForm
       .get('region')
       ?.valueChanges.subscribe((value) => console.log({ value }));
+
+    onCleanup(() => {
+      formRegionChange?.unsubscribe();
+    });
   });
 }
