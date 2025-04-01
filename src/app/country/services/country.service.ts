@@ -26,4 +26,16 @@ export class CountryService {
 
     return this.httpClient.get<Country[]>(url);
   }
+
+  getCountryByAlpahCode(alphaCode: string): Observable<Country> {
+    if (!alphaCode) return of();
+
+    const url = `${this.baseUrl}/alpha/${alphaCode}?fields=cca3,name,borders`;
+
+    return this.httpClient.get<Country>(url);
+  }
+
+  getCountryborderByCodes(borders: string[]) {
+    // TODO
+  }
 }
