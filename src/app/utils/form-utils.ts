@@ -4,6 +4,19 @@ import {
   FormGroup,
   ValidationErrors,
 } from '@angular/forms';
+import { timeout } from 'rxjs';
+
+/**
+ * It waits 2500 ms before resolve a Promise as True
+ * @returns
+ */
+async function sleep() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(true);
+    }, 2500);
+  });
+}
 
 export class FormUtils {
   static namePattern = '([a-zA-Z]+) ([a-zA-Z]+)';
@@ -21,6 +34,8 @@ export class FormUtils {
           return `The minimum value is ${errors['min'].min} `;
         case 'email':
           return 'The value is not a valid email';
+        case 'emailTaken':
+          return 'The email is being used by other user';
         case 'pattern':
           if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
             return 'The email address is not allowed';
@@ -82,5 +97,23 @@ export class FormUtils {
       const field2Value = formGroup.get(field2)?.value;
       return field1Value === field2Value ? null : { passwordNotEqual: true };
     };
+  }
+
+  static async checkingServerResponse(
+    control: AbstractControl
+  ): Promise<ValidationErrors | null> {
+    console.log('Validationg against server');
+
+    await sleep();
+
+    const formValue = control.value;
+
+    if (formValue === 'hello@world.com') {
+      return {
+        emailTaken: true,
+      };
+    }
+
+    return null;
   }
 }
