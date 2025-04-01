@@ -26,12 +26,16 @@ export class CountryPageComponent {
   });
 
   onFormChanged = effect((onCleanup) => {
-    const formRegionChange = this.myForm
-      .get('region')
-      ?.valueChanges.subscribe((value) => console.log({ value }));
+    const regionSubscription = this.onRegionChange();
 
     onCleanup(() => {
-      formRegionChange?.unsubscribe();
+      regionSubscription?.unsubscribe();
     });
   });
+
+  onRegionChange() {
+    return this.myForm.get('region')?.valueChanges.subscribe((region) => {
+      console.log({ region });
+    });
+  }
 }
