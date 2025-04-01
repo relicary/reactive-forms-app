@@ -36,6 +36,8 @@ export class FormUtils {
           return 'The value is not a valid email';
         case 'emailTaken':
           return 'The email is being used by other user';
+        case 'notStrider':
+          return 'This nickname is not allowed';
         case 'pattern':
           if (errors['pattern'].requiredPattern === FormUtils.emailPattern) {
             return 'The email address is not allowed';
@@ -102,8 +104,6 @@ export class FormUtils {
   static async checkingServerResponse(
     control: AbstractControl
   ): Promise<ValidationErrors | null> {
-    console.log('Validationg against server');
-
     await sleep();
 
     const formValue = control.value;
@@ -111,6 +111,18 @@ export class FormUtils {
     if (formValue === 'hello@world.com') {
       return {
         emailTaken: true,
+      };
+    }
+
+    return null;
+  }
+
+  static notStrider(control: AbstractControl): ValidationErrors | null {
+    const formValue = control.value;
+
+    if (formValue === 'strider') {
+      return {
+        notStrider: true,
       };
     }
 
