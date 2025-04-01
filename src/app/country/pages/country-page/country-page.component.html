@@ -7,11 +7,11 @@
     <div class="col">
       <label class="form-label">Continente:</label>
       <select formControlName="region" class="form-control">
-        <option value="">-- Seleccione Continente --</option>
+        <option value="">-- Select Region --</option>
 
-        <!-- <option [value]="region">
-          {{ region }}
-        </option> -->
+        @for (region of regions(); track region) {
+        <option [value]="region">{{ region }}</option>
+        }
       </select>
     </div>
   </div>
