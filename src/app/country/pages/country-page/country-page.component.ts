@@ -28,9 +28,11 @@ export class CountryPageComponent {
 
   onFormChanged = effect((onCleanup) => {
     const regionSubscription = this.onRegionChange();
+    const countrySubscription = this.onCountryChange();
 
     onCleanup(() => {
       regionSubscription?.unsubscribe();
+      countrySubscription?.unsubscribe();
     });
   });
 
@@ -49,5 +51,11 @@ export class CountryPageComponent {
       .subscribe((countries) => {
         this.countriesByRegion.set(countries);
       });
+  }
+
+  onCountryChange() {
+    return this.myForm.get('country')?.valueChanges.subscribe((countryCode) => {
+      console.log({ countryCode });
+    });
   }
 }
